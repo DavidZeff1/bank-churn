@@ -176,7 +176,7 @@ run(tf.paragraphs[0], "Data Analyst Program, Hebrew University of Jerusalem   | 
 # ===================================================================== 2 TEAM
 s = slide(); title_bar(s, "Team & Mentor", "Project")
 rows = [("Presenters", "Noy Levy, David Zeff, Danielle Ab, Sagi Gutin, Shira Meriash"),
-        ("Mentor", "[ add mentor name ]"),
+        ("Mentor", "Tall Mizrachi"),
         ("Dataset", "Bank Churn — 10,000 retail-banking customers"),
         ("Tools", "Python (pandas) · cleaning & analysis  |  Plotly · interactive dashboard  |  PowerPoint")]
 y = 1.9
