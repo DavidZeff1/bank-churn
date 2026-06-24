@@ -170,13 +170,12 @@ run(p, f"€{K['balance_at_risk']/1e6:.0f}M deposits at risk", 18, AMBER, bold=T
 run(p, "   ·   ", 18, GREY)
 run(p, f"{K['churned_customers']:,} customers lost", 18, WHITE, bold=True)
 tf = txt(s, 1.0, 6.5, 11.3, 0.5)
-run(tf.paragraphs[0], "Data Analyst Program, Hebrew University of Jerusalem   |   David Zeff   |   June 2026",
+run(tf.paragraphs[0], "Data Analyst Program, Hebrew University of Jerusalem   |   Noy Levy, David Zeff, Danielle Ab, Sagi Gutin, Shira Meriash   |   June 2026",
     13, RGBColor(0xB6,0xC4,0xD6))
 
 # ===================================================================== 2 TEAM
 s = slide(); title_bar(s, "Team & Mentor", "Project")
-rows = [("Presenter", "David Zeff"),
-        ("Group members", "[ add teammate names ]"),
+rows = [("Presenters", "Noy Levy, David Zeff, Danielle Ab, Sagi Gutin, Shira Meriash"),
         ("Mentor", "[ add mentor name ]"),
         ("Dataset", "Bank Churn — 10,000 retail-banking customers"),
         ("Tools", "Python (pandas) · cleaning & analysis  |  Plotly · interactive dashboard  |  PowerPoint")]
@@ -359,7 +358,7 @@ run(tf.paragraphs[0], "Questions?", 54, WHITE, bold=True, font=FONT_H)
 tf = txt(s, 0, 3.3, SW, 0.6, align=PP_ALIGN.CENTER)
 run(tf.paragraphs[0], "Thank you  ·  Bank Churn — A Business Perspective", 18, RGBColor(0xD7,0xE0,0xEC))
 tf = txt(s, 0, 4.0, SW, 0.5, align=PP_ALIGN.CENTER)
-run(tf.paragraphs[0], "David Zeff   ·   Data Analyst Program, Hebrew University of Jerusalem", 13, GREY)
+run(tf.paragraphs[0], "Noy Levy, David Zeff, Danielle Ab, Sagi Gutin, Shira Meriash   ·   Data Analyst Program, Hebrew University of Jerusalem", 13, GREY)
 
 out = BASE / "deliverables" / "Bank_Churn_Analysis.pptx"
 prs.save(out)
