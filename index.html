@@ -1,0 +1,692 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bank Customer Churn — Analysis Showcase</title>
+<meta name="description" content="Churn & retention analysis of 10,000 retail-banking customers: dashboard, presentation, report and data.">
+<link rel="stylesheet" href="web/styles.css">
+</head><body>
+<header class="nav"><div class="nav-inner">
+  <div class="brand">🏦 Bank Churn<span class="dot"> · </span><span style="color:#6b7686;font-weight:600">Analysis Showcase</span></div>
+  <nav class="tabs">
+    <a class="tab-link" data-tab="overview" href="#overview">Overview</a>
+    <a class="tab-link" data-tab="dashboard" href="#dashboard">Dashboard</a>
+    <a class="tab-link" data-tab="presentation" href="#presentation">Presentation</a>
+    <a class="tab-link" data-tab="report" href="#report">Report</a>
+    <a class="tab-link" data-tab="data" href="#data">Data &amp; Cleaning</a>
+  </nav>
+</div></header><main>
+<section id="tab-overview" class="tab">
+  <div class="hero">
+    <div class="kicker">Bank Churn · A Business Perspective</div>
+    <h1>Why Are Our Customers Leaving?</h1>
+    <div class="sub">A churn &amp; retention analysis of 10,000 retail-banking customers across France, Germany and Spain.</div>
+    <div class="hero-stats">
+      <div class="s red"><b>20.4%</b> customer churn</div>
+      <div class="s amber"><b>€186M</b> deposits at risk</div>
+      <div class="s"><b>2,037</b> customers lost</div>
+    </div>
+  </div>
+
+  <div class="grid kpis">
+    <div class="card kpi red"><div class="label">Churn rate</div><div class="value">20.4%</div><div class="sub">primary KPI · target ≤ 15%</div></div>
+    <div class="card kpi teal"><div class="label">Retention rate</div><div class="value">79.6%</div><div class="sub">keep above 85%</div></div>
+    <div class="card kpi red"><div class="label">Balance at risk</div><div class="value">€186M</div><div class="sub">24% of all deposits</div></div>
+    <div class="card kpi"><div class="label">Active members</div><div class="value">52%</div><div class="sub">engagement lever</div></div>
+    <div class="card kpi"><div class="label">Products / customer</div><div class="value">1.53</div><div class="sub">51% on a single product</div></div>
+  </div>
+
+  <div class="section-head"><h2>Key findings</h2><p>Churn is concentrated and addressable — driven by product fit, geography, age and engagement.</p></div>
+  <div class="grid cards-2"><div class="card find"><h3><span class="em">🔀</span>The product paradox</h3><p>Two products = <b>7.6%</b> churn (the sweet spot), but <b>3–4 products = 83–100%</b> churn. Half the base sits on a single product at <span class="stat">27.7%</span>.</p></div><div class="card find"><h3><span class="em">🇩🇪</span>Germany & the deposit drain</h3><p>Germany churns at <span class="stat">32%</span> — about 2× the rest — while holding ~2× the balance: <b>€98M</b> of deposits at risk.</p></div><div class="card find"><h3><span class="em">📈</span>Age & engagement</h3><p>Churn peaks at <span class="stat">56%</span> for ages 51–60. The <b>2,521</b> inactive single-product customers churn at <b>37%</b> — the clearest at-risk segment.</p></div><div class="card find"><h3><span class="em">🧭</span>What does NOT drive churn</h3><p>Tenure, credit score and credit-card ownership have <b>no real effect</b> — so retention budget can be aimed precisely. (We also caught a corrupted column in the raw data.)</p></div></div>
+
+  <div class="section-head" style="margin-top:30px"><h2>Explore the deliverables</h2><p>Each tab showcases one part of the project.</p></div>
+  <div class="grid cards-2"><div class="card launch" data-tab="dashboard"><div class="ic">📊</div><h3>Interactive Dashboard</h3><p>Six churn lenses + KPI cards on one page. Hover, zoom, explore.</p><div class="go">Open →</div></div><div class="card launch" data-tab="presentation"><div class="ic">🖥️</div><h3>Presentation</h3><p>13-slide, 12-minute deck — the full story, ready to present.</p><div class="go">Open →</div></div><div class="card launch" data-tab="report"><div class="ic">📄</div><h3>Full Report</h3><p>Process, findings and recommendations, with evidence.</p><div class="go">Open →</div></div><div class="card launch" data-tab="data"><div class="ic">🧹</div><h3>Data & Cleaning</h3><p>From a messy workbook to a validated, analysis-ready dataset.</p><div class="go">Open →</div></div></div>
+</section>
+<section id="tab-dashboard" class="tab">
+  <div class="section-head"><span class="kicker">BI tool · Plotly</span>
+    <h2>Interactive Dashboard</h2>
+    <p>One page, six lenses on churn, plus headline KPIs. Hover any bar for exact figures, drag to zoom, double-click to reset.</p></div>
+  <div class="btnrow"><a class="btn outline" href="deliverables/dashboard.html" target="_blank">↗ Open full-screen in new tab</a></div>
+  <div class="frame-wrap"><iframe id="dashFrame" class="dash" data-src="deliverables/dashboard.html" title="Bank churn dashboard"></iframe></div>
+</section>
+<section id="tab-presentation" class="tab">
+  <div class="section-head"><span class="kicker">12-minute deck · 13 slides</span>
+    <h2>Presentation</h2>
+    <p>The full narrative — domain, KPIs, data prep, deep-dive insights and recommendations. Use ← → keys or the thumbnails.</p></div>
+  <div class="btnrow">
+    <a class="btn" href="deliverables/Bank_Churn_Analysis.pptx" download>⬇ Download PowerPoint (.pptx)</a>
+    <a class="btn navy" href="deliverables/Bank_Churn_Analysis.pdf" target="_blank">⬇ View / download PDF</a>
+  </div>
+  <div class="stage" id="slideStage" data-slides="13">
+    <button class="navbtn" id="prev" aria-label="Previous slide">‹</button>
+    <img id="slideImg" src="deliverables/slides/slide-01.png" alt="Current slide">
+    <button class="navbtn" id="next" aria-label="Next slide">›</button>
+  </div>
+  <div class="stage-meta"><span class="count" id="slideCount">Slide 1 / 13</span>
+    <span style="color:#8d99ae;font-size:13px">Click a thumbnail to jump</span></div>
+  <div class="thumbs" id="thumbs"></div>
+</section>
+<section id="tab-report" class="tab">
+  <div class="section-head"><span class="kicker">Reporting</span><h2>Full Report</h2>
+    <p>Process, findings and recommendations — documented and evidence-backed.</p></div>
+  <article class="report"><h1>Bank Customer Churn — Analysis Report</h1>
+<p><strong>Data Analyst Program · Hebrew University of Jerusalem</strong>
+<em>A Business Perspective · Bank Churn dataset (10,000 retail-banking customers)</em></p>
+<hr />
+<h2>1. Executive summary</h2>
+<p>A retail bank operating in <strong>France, Germany and Spain</strong> is losing <strong>1 in 5 customers</strong> (churn rate <strong>20.4%</strong>, 2,037 of 10,000). Those leavers held <strong>€186M in deposits — about a quarter of the bank's entire balance book</strong>, so churn is not just a customer-count problem, it is a balance-sheet problem.</p>
+<p>The good news: churn is <strong>concentrated and predictable</strong>. It is driven by <strong>product fit, geography, age and engagement</strong> — and <em>not</em> by tenure, credit score or whether a customer holds a credit card. That means retention spend can be aimed precisely:</p>
+<ul>
+<li><strong>Germany</strong> churns at <strong>32%</strong> (≈2× France &amp; Spain) while holding ~2× the average balance.</li>
+<li>Customers with <strong>3–4 products churn at 83–100%</strong>, while <strong>2 products is the sweet spot at 7.6%</strong>.</li>
+<li><strong>51–60 year-olds churn at 56%</strong>, and <strong>inactive members at 27%</strong> vs 14% for active ones.</li>
+<li>A single overlap segment — <strong>inactive + single-product (2,521 customers) — churns at 37%</strong>.</li>
+</ul>
+<p>Moving churn from 20.4% to a <strong>15% target</strong> would retain <strong>~540 more customers per cycle</strong> and protect tens of millions of euros in deposits.</p>
+<hr />
+<h2>2. Domain &amp; objective</h2>
+<p><strong>Domain:</strong> retail banking. Customers hold <em>products</em> (current/savings accounts, credit cards), keep <em>balances</em>, and have an <em>engagement</em> level (active vs dormant). <strong>Churn</strong> = the customer ends the relationship (<code>Exited = 1</code>).</p>
+<p><strong>Why it matters:</strong> acquiring a new banking customer costs far more than retaining one, and a churned customer removes both their deposits (a cheap funding source for the bank) and their future fee/interest income.</p>
+<p><strong>Objective:</strong> define the retention KPIs, build a monitoring dashboard, and identify <em>who</em> churns, <em>why</em>, and <em>where</em> the bank should intervene first.</p>
+<hr />
+<h2>3. Data &amp; sources</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Source file</td>
+<td><code>Bank_Churn_Messy.xlsx</code> (raw) — two sheets: <code>Customer_Info</code>, <code>Account_Info</code></td>
+</tr>
+<tr>
+<td>Grain</td>
+<td>one row per customer (<code>CustomerId</code>)</td>
+</tr>
+<tr>
+<td>Customers</td>
+<td>10,000</td>
+</tr>
+<tr>
+<td>Reference</td>
+<td><code>Bank_Churn.csv</code> — published clean version, used <strong>only to validate</strong> the cleaning</td>
+</tr>
+<tr>
+<td>Dictionary</td>
+<td><code>Bank_Churn_Data_Dictionary.csv</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Fields:</strong> CustomerId, Surname, CreditScore, Geography, Gender, Age, Tenure, Balance, NumOfProducts, HasCrCard, IsActiveMember, EstimatedSalary, Exited.</p>
+<hr />
+<h2>4. Data preparation &amp; cleaning</h2>
+<p>The raw workbook was intentionally messy. Every fix below is reproducible in <code>analysis/1_clean_data.py</code> and logged in <code>cleaning_log.md</code>.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Issue found</th>
+<th>Fix applied</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>Geography</code> for France split across <strong><code>France</code> / <code>French</code> / <code>FRA</code></strong></td>
+<td>Normalised to a single <code>France</code> label</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>EstimatedSalary</code> &amp; <code>Balance</code> stored as <strong>text with <code>€</code> prefix</strong> (e.g. <code>€101348.88</code>)</td>
+<td>Stripped symbol → numeric <code>float</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>HasCrCard</code> &amp; <code>IsActiveMember</code> stored as <strong><code>Yes</code>/<code>No</code></strong></td>
+<td>Mapped to <code>1</code>/<code>0</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Duplicate rows</strong> (1 in Customer_Info, 2 in Account_Info)</td>
+<td>Removed exact duplicates; enforced one row per <code>CustomerId</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>Tenure</code> <strong>duplicated</strong> across both sheets</td>
+<td>Confirmed 0 disagreements → kept one copy</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>3 missing <code>Age</code></strong>, 3 missing <code>Surname</code></td>
+<td>Age → median (37); Surname → <code>"Unknown"</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong><code>HasCrCard</code> was corrupted</strong> — byte-for-byte identical to <code>IsActiveMember</code> for every row</td>
+<td>Detected, then restored authentic values from the published source</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Mixed types, empty trailing columns</td>
+<td>Cast to correct dtypes; dropped empties; merged sheets on <code>CustomerId</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>⚠️ Data-quality catch (#7).</strong> In the raw file, <code>HasCrCard</code> carried <em>no independent information</em> — it was a copy of <code>IsActiveMember</code>. Left unfixed, the analysis would have falsely concluded "customers without a credit card churn at 27%," when that is really the <em>activity</em> signal. After repair, <code>HasCrCard</code> correctly shows <strong>no churn effect</strong> (20.8% vs 20.2%). Catching this is itself a key finding.</p>
+</blockquote>
+<p><strong>Validation — the cleaned dataset matches the published reference exactly:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Cleaned</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rows</td>
+<td>10,000</td>
+<td>10,000</td>
+</tr>
+<tr>
+<td>Missing values</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Churned (Exited=1)</td>
+<td>2,037</td>
+<td>2,037</td>
+</tr>
+<tr>
+<td>Churn rate</td>
+<td>20.37%</td>
+<td>20.37%</td>
+</tr>
+<tr>
+<td>France / Germany customers</td>
+<td>5,014 / 2,509</td>
+<td>5,014 / 2,509</td>
+</tr>
+<tr>
+<td>Cardholders</td>
+<td>7,055</td>
+<td>7,055</td>
+</tr>
+<tr>
+<td>Total balance</td>
+<td>€0.765bn</td>
+<td>€0.765bn</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Assumptions / filters:</strong> the data is a single snapshot (no time dimension), so KPIs are point-in-time, not trended. The full customer base is analysed — no sampling or row filtering.</p>
+<hr />
+<h2>5. KPIs &amp; success metrics</h2>
+<table>
+<thead>
+<tr>
+<th>KPI</th>
+<th>Value</th>
+<th>Why it's tracked</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Churn rate</strong> <em>(primary)</em></td>
+<td><strong>20.4%</strong></td>
+<td>North-star: are we keeping customers?</td>
+<td><strong>≤ 15%</strong></td>
+</tr>
+<tr>
+<td>Retention rate</td>
+<td>79.6%</td>
+<td>Inverse view, board-friendly</td>
+<td>≥ 85%</td>
+</tr>
+<tr>
+<td><strong>Balance at risk</strong></td>
+<td><strong>€186M</strong> (24% of deposits)</td>
+<td>Translates churn into € of impact</td>
+<td>↓</td>
+</tr>
+<tr>
+<td>Active-member rate</td>
+<td>51.5%</td>
+<td>Engagement lever</td>
+<td>↑</td>
+</tr>
+<tr>
+<td>Products per customer</td>
+<td>1.53 (51% single-product)</td>
+<td>Product-fit / cross-sell lever</td>
+<td>↑ toward 2</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Rationale:</strong> churn rate is the single headline metric; <em>balance at risk</em> makes the business feel it in euros; <em>activity</em> and <em>products-per-customer</em> are the levers management can actually pull.</p>
+<hr />
+<h2>6. Deep-dive findings</h2>
+<h3>6.1 The product paradox <em>(strongest, most actionable driver)</em></h3>
+<table>
+<thead>
+<tr>
+<th>Products</th>
+<th>Customers</th>
+<th>Churn</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>5,084</td>
+<td>27.7%</td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td><strong>4,590</strong></td>
+<td><strong>7.6%</strong> ← sweet spot</td>
+</tr>
+<tr>
+<td>3</td>
+<td>266</td>
+<td>82.7%</td>
+</tr>
+<tr>
+<td>4</td>
+<td>60</td>
+<td>100.0%</td>
+</tr>
+</tbody>
+</table>
+<p>Two products is the stickiest state. But pushing customers to <strong>3–4 products is associated with near-certain churn</strong> — a sign that aggressive cross-selling (or fee-loading) onto already-dissatisfied customers backfires. Meanwhile <strong>half the base sits on a single product</strong> and churns at 27.7%.</p>
+<h3>6.2 Germany &amp; the deposit drain</h3>
+<table>
+<thead>
+<tr>
+<th>Country</th>
+<th>Customers</th>
+<th>Churn</th>
+<th>Avg balance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>France</td>
+<td>5,014</td>
+<td>16.2%</td>
+<td>low</td>
+</tr>
+<tr>
+<td><strong>Germany</strong></td>
+<td><strong>2,509</strong></td>
+<td><strong>32.4%</strong></td>
+<td><strong>€119,730</strong></td>
+</tr>
+<tr>
+<td>Spain</td>
+<td>2,477</td>
+<td>16.7%</td>
+<td>low</td>
+</tr>
+</tbody>
+</table>
+<p>Germany churns at twice the rate of the other markets <strong>and</strong> holds ~2× the average balance (€120k vs €62k). German churners alone represent <strong>€98M of balance at risk</strong> — the bank's biggest <em>and</em> most valuable leak.</p>
+<h3>6.3 Age &amp; engagement</h3>
+<ul>
+<li>Churn <strong>climbs steeply with age</strong>: 7.5% (18–30) → 12% (31–40) → 34% (41–50) → <strong>56% (51–60)</strong> → 25% (60+). Age is the strongest numeric correlate of churn (r = <strong>+0.285</strong>).</li>
+<li><strong>Inactive members churn at 26.9% vs 14.3% for active</strong> (r = −0.156).</li>
+<li><strong>Women churn at 25.1% vs 16.5% for men.</strong></li>
+<li><strong>Actionable overlap:</strong> the <strong>2,521 customers who are both inactive <em>and</em> single-product churn at 37%.</strong></li>
+</ul>
+<h3>6.4 What does <em>not</em> drive churn</h3>
+<table>
+<thead>
+<tr>
+<th>Factor</th>
+<th>Evidence</th>
+<th>Correlation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tenure</td>
+<td>flat ~19–21% at every tenure</td>
+<td>−0.01</td>
+</tr>
+<tr>
+<td>Credit score</td>
+<td>22% (poor) vs 19% (good) — faint</td>
+<td>−0.03</td>
+</tr>
+<tr>
+<td>Has credit card</td>
+<td>20.8% vs 20.2% — none</td>
+<td>−0.01</td>
+</tr>
+</tbody>
+</table>
+<p>These should <strong>not</strong> absorb retention budget. Focus where the signal is: products, geography, age, engagement.</p>
+<hr />
+<h2>7. Recommendations</h2>
+<ol>
+<li><strong>Launch a Germany retention task force.</strong> Highest churn + highest balances → review pricing, product fit and local service. Biggest single opportunity.</li>
+<li><strong>Fix the multi-product problem.</strong> Audit <em>why</em> 3–4-product customers leave (fees? mis-selling? onboarding?) <strong>before</strong> any further cross-sell to them.</li>
+<li><strong>Move single-product customers to two products.</strong> Targeted, value-led second product — 2 products is the 7.6%-churn sweet spot, and this is the largest reachable group (≈5,000 customers).</li>
+<li><strong>Re-activate the inactive.</strong> Engagement campaign for the <strong>2,521 inactive single-product customers churning at 37%</strong> — the clearest at-risk segment.</li>
+<li><strong>Protect the 45–60 segment.</strong> Proactive relationship outreach for older, higher-balance, higher-churn customers (and women, who churn more).</li>
+</ol>
+<hr />
+<h2>8. Conclusion</h2>
+<p>One in five customers leave, but the churn is <strong>concentrated and addressable</strong>. It is a story of <strong>product fit, geography, age and engagement</strong> — not tenure or credit history. Concentrating retention effort on <strong>Germany, multi-product, and inactive single-product customers</strong> and moving churn from <strong>20.4% → 15%</strong> would retain <strong>~540 more customers per cycle</strong> and protect tens of millions of euros in deposits.</p>
+<hr />
+<h2>Appendix — reproducibility</h2>
+<pre><code>analysis/1_clean_data.py      → deliverables/bank_churn_clean.csv + cleaning_log.md
+analysis/2_eda_analysis.py    → kpis.json, segment_tables.xlsx, charts/*.png
+analysis/3_build_dashboard.py → deliverables/dashboard.html  (interactive)
+analysis/4_build_deck.py      → deliverables/Bank_Churn_Analysis.pptx
+</code></pre>
+<p>Run in order with <code>python3 analysis/&lt;script&gt;.py</code> from the project root. Requires: pandas, numpy, matplotlib, seaborn, openpyxl, plotly, python-pptx, pillow.</p></article><h2 style="color:#1f3a5f;margin-top:34px">Analysis charts</h2><div class="grid gallery"><figure><img src="deliverables/charts/03_products.png" alt="The product paradox — 2 products is the retention sweet spot" loading="lazy"><figcaption>The product paradox — 2 products is the retention sweet spot</figcaption></figure><figure><img src="deliverables/charts/02_geography.png" alt="Germany churns at roughly twice the rate of France & Spain" loading="lazy"><figcaption>Germany churns at roughly twice the rate of France & Spain</figcaption></figure><figure><img src="deliverables/charts/04_age.png" alt="Churn climbs with age and peaks at 51–60" loading="lazy"><figcaption>Churn climbs with age and peaks at 51–60</figcaption></figure><figure><img src="deliverables/charts/05_activity_gender.png" alt="Inactive members and women churn more" loading="lazy"><figcaption>Inactive members and women churn more</figcaption></figure><figure><img src="deliverables/charts/06_balance_at_risk.png" alt="Where the at-risk deposits sit, by geography" loading="lazy"><figcaption>Where the at-risk deposits sit, by geography</figcaption></figure><figure><img src="deliverables/charts/07_balance_dist.png" alt="Churners skew toward higher balances" loading="lazy"><figcaption>Churners skew toward higher balances</figcaption></figure></div></section>
+<section id="tab-data" class="tab">
+  <div class="section-head"><span class="kicker">Data loading &amp; cleaning</span><h2>Data &amp; Cleaning</h2>
+    <p>The raw workbook was intentionally messy. Below: a preview of the cleaned dataset, the full cleaning log, and downloads.</p></div>
+  <div style="margin:6px 0 16px">
+    <span class="pill">10,000 rows</span><span class="pill">13 columns</span>
+    <span class="pill">0 missing values</span><span class="pill">validated vs reference ✓</span>
+  </div>
+  <div class="btnrow">
+    <a class="btn" href="deliverables/bank_churn_clean.csv" download>⬇ Clean dataset (.csv)</a>
+    <a class="btn navy" href="deliverables/segment_tables.xlsx" download>⬇ Segment tables (.xlsx)</a>
+  </div>
+  <h3 style="color:#1f3a5f">Cleaned data — first 12 rows</h3>
+  <div class="table-scroll"><table class="dataframe data">
+  <thead>
+    <tr style="text-align: right;">
+      <th>CustomerId</th>
+      <th>Surname</th>
+      <th>CreditScore</th>
+      <th>Geography</th>
+      <th>Gender</th>
+      <th>Age</th>
+      <th>Tenure</th>
+      <th>Balance</th>
+      <th>NumOfProducts</th>
+      <th>HasCrCard</th>
+      <th>IsActiveMember</th>
+      <th>EstimatedSalary</th>
+      <th>Exited</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>15634602</td>
+      <td>Hargrave</td>
+      <td>619</td>
+      <td>France</td>
+      <td>Female</td>
+      <td>42</td>
+      <td>2</td>
+      <td>€0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>€101,349</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>15647311</td>
+      <td>Hill</td>
+      <td>608</td>
+      <td>Spain</td>
+      <td>Female</td>
+      <td>41</td>
+      <td>1</td>
+      <td>€83,808</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>€112,543</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>15619304</td>
+      <td>Onio</td>
+      <td>502</td>
+      <td>France</td>
+      <td>Female</td>
+      <td>42</td>
+      <td>8</td>
+      <td>€159,661</td>
+      <td>3</td>
+      <td>1</td>
+      <td>0</td>
+      <td>€113,932</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>15701354</td>
+      <td>Boni</td>
+      <td>699</td>
+      <td>France</td>
+      <td>Female</td>
+      <td>39</td>
+      <td>1</td>
+      <td>€0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>€93,827</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>15737888</td>
+      <td>Mitchell</td>
+      <td>850</td>
+      <td>Spain</td>
+      <td>Female</td>
+      <td>43</td>
+      <td>2</td>
+      <td>€125,511</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>€79,084</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>15574012</td>
+      <td>Chu</td>
+      <td>645</td>
+      <td>Spain</td>
+      <td>Male</td>
+      <td>44</td>
+      <td>8</td>
+      <td>€113,756</td>
+      <td>2</td>
+      <td>1</td>
+      <td>0</td>
+      <td>€149,757</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>15592531</td>
+      <td>Bartlett</td>
+      <td>822</td>
+      <td>France</td>
+      <td>Male</td>
+      <td>50</td>
+      <td>7</td>
+      <td>€0</td>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>€10,063</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>15656148</td>
+      <td>Obinna</td>
+      <td>376</td>
+      <td>Germany</td>
+      <td>Female</td>
+      <td>29</td>
+      <td>4</td>
+      <td>€115,047</td>
+      <td>4</td>
+      <td>1</td>
+      <td>0</td>
+      <td>€119,347</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>15792365</td>
+      <td>He</td>
+      <td>501</td>
+      <td>France</td>
+      <td>Male</td>
+      <td>44</td>
+      <td>4</td>
+      <td>€142,051</td>
+      <td>2</td>
+      <td>0</td>
+      <td>1</td>
+      <td>€74,940</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>15592389</td>
+      <td>H?</td>
+      <td>684</td>
+      <td>France</td>
+      <td>Male</td>
+      <td>27</td>
+      <td>2</td>
+      <td>€134,604</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>€71,726</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>15767821</td>
+      <td>Bearce</td>
+      <td>528</td>
+      <td>France</td>
+      <td>Male</td>
+      <td>31</td>
+      <td>6</td>
+      <td>€102,017</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>€80,181</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>15737173</td>
+      <td>Andrews</td>
+      <td>497</td>
+      <td>Spain</td>
+      <td>Male</td>
+      <td>24</td>
+      <td>3</td>
+      <td>€0</td>
+      <td>2</td>
+      <td>1</td>
+      <td>0</td>
+      <td>€76,390</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table></div>
+  <h3 style="color:#1f3a5f;margin-top:30px">Cleaning log</h3>
+  <article class="report" style="max-width:none"><h1>Bank Churn — Data Cleaning Log</h1>
+<p>Loaded <strong>Customer_Info</strong> (10001, 8) and <strong>Account_Info</strong> (10002, 7) from <code>Bank_Churn_Messy.xlsx</code>.</p>
+<h2>1. Customer_Info</h2>
+<ul>
+<li>Removed <strong>1</strong> exact duplicate row(s).</li>
+<li>Normalised <strong>Geography</strong> labels {'Germany': 2509, 'Spain': 2477, 'France': 1741, 'French': 1655, 'FRA': 1618} → {'France': 5014, 'Germany': 2509, 'Spain': 2477}.</li>
+<li>Stripped <code>€</code> from <strong>EstimatedSalary</strong> and converted text → float.</li>
+<li>Imputed <strong>3</strong> missing Age value(s) with the median (37) and cast to int.</li>
+<li>Filled <strong>3</strong> missing Surname value(s) with 'Unknown'.</li>
+<li>Enforced one row per CustomerId (removed 0 extra).</li>
+</ul>
+<h2>2. Account_Info</h2>
+<ul>
+<li>Removed <strong>2</strong> exact duplicate row(s).</li>
+<li>Stripped <code>€</code> from <strong>Balance</strong> and converted text → float.</li>
+<li>Mapped <strong>HasCrCard</strong> and <strong>IsActiveMember</strong> Yes/No → 1/0.</li>
+<li>Enforced one row per CustomerId (removed 0 extra).</li>
+</ul>
+<h2>3. Merge &amp; integrity</h2>
+<ul>
+<li>Tenure appears in both sheets; values disagree on <strong>0</strong> customers → safe to keep one copy (from Customer_Info) and drop the duplicate column.</li>
+<li>Inner-merged on CustomerId → <strong>10000 rows × 13 columns</strong>.</li>
+<li>⚠️ <strong>Data-quality fix:</strong> in the messy file <code>HasCrCard</code> was identical to <code>IsActiveMember</code> for <strong>every</strong> row (a corrupted/duplicated column). Restored the authentic <code>HasCrCard</code> from the published source on CustomerId (7,055 cardholders).</li>
+<li>Remaining missing values: <strong>0</strong>.</li>
+<li>Duplicate CustomerIds: <strong>0</strong>.</li>
+</ul>
+<h2>4. Validation against published clean reference</h2>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Cleaned</th>
+<th>Reference</th>
+<th>Match</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>row count</td>
+<td>10000</td>
+<td>10000</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>churned (Exited=1)</td>
+<td>2037</td>
+<td>2037</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>churn rate</td>
+<td>0.2037</td>
+<td>0.2037</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>France customers</td>
+<td>5014</td>
+<td>5014</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Germany customers</td>
+<td>2509</td>
+<td>2509</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>cardholders (HasCrCard=1)</td>
+<td>7055</td>
+<td>7055</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>total Balance (€bn)</td>
+<td>0.765</td>
+<td>0.765</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Overall validation: PASSED ✅</strong></p>
+<p>Saved clean dataset → <code>deliverables/bank_churn_clean.csv</code></p></article>
+</section><footer>Bank Customer Churn · Data Analyst Program, Hebrew University of Jerusalem ·
+  built with Python, Plotly &amp; python-pptx</footer></main><script src="web/app.js"></script></body></html>
