@@ -23,6 +23,8 @@ header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
 .brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--navy);
   font-size:17px;white-space:nowrap}
 .brand .dot{color:var(--teal)}
+.brand-bar{display:flex;align-items:center;justify-content:space-between;flex:1}
+.menu-toggle{display:none;background:none;border:none;font-size:24px;cursor:pointer;color:var(--navy);padding:0}
 nav.tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
 nav.tabs::-webkit-scrollbar{display:none}
 .tab-link{padding:10px 14px;color:var(--muted);font-weight:600;font-size:14.5px;
@@ -30,6 +32,16 @@ nav.tabs::-webkit-scrollbar{display:none}
   border-radius:8px 8px 0 0;transition:.15s}
 .tab-link:hover{color:var(--navy);background:#f3f7fb}
 .tab-link.active{color:var(--navy);border-bottom-color:var(--teal)}
+
+@media(max-width:760px){
+  .nav-inner{flex-direction:column;height:auto;padding:14px 22px;align-items:stretch}
+  .brand-bar{flex:none;width:100%}
+  .menu-toggle{display:block}
+  nav.tabs{display:none;flex-direction:column;padding-top:10px;gap:4px}
+  nav.tabs.open{display:flex}
+  .tab-link{border-radius:8px;border-bottom:none;border-left:3px solid transparent;padding:12px 14px}
+  .tab-link.active{border-left-color:var(--teal);background:#f3f7fb}
+}
 
 /* ---------- layout ---------- */
 main{max-width:1200px;margin:0 auto;padding:26px 22px 70px}

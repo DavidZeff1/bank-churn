@@ -19,10 +19,15 @@
   function route() { showTab((location.hash || "#overview").slice(1)); }
 
   document.addEventListener("click", e => {
+    if (e.target.closest(".menu-toggle")) {
+      document.querySelector(".tabs").classList.toggle("open");
+      return;
+    }
     const link = e.target.closest("[data-tab]");
     if (!link) return;
     e.preventDefault();
     location.hash = link.dataset.tab;
+    document.querySelector(".tabs").classList.remove("open");
   });
   window.addEventListener("hashchange", route);
 
