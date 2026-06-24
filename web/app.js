@@ -1,6 +1,6 @@
 /* Bank Churn showcase — tabs + slide gallery */
 (function () {
-  const TABS = ["overview", "dashboard", "presentation", "report", "data"];
+  const TABS = ["overview", "kpis", "dashboard", "presentation", "report", "data"];
 
   function showTab(id) {
     if (!TABS.includes(id)) id = "overview";

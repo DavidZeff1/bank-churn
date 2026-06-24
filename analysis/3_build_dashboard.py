@@ -102,13 +102,17 @@ divs = [f.to_html(full_html=False, include_plotlyjs=False, config=cfg,
 
 # KPI cards
 churned = df[df.Exited==1]
+tb = df.Balance.sum(); bar = churned.Balance.sum(); NIM = 0.025
+hi = df[df.Balance > 100000]
 cards = [
-    ("Churn rate", f"{baseline:.1%}", "PRIMARY KPI · target ≤ 15%", RED),
-    ("Customers lost", f"{int(df.Exited.sum()):,}", "of 10,000 customers", NAVY),
-    ("Balance at risk", f"€{churned.Balance.sum()/1e6:.0f}M", f"{churned.Balance.sum()/df.Balance.sum():.0%} of all deposits", RED),
-    ("Retention rate", f"{1-baseline:.1%}", "keep above 85%", TEAL),
-    ("Active members", f"{df.IsActiveMember.mean():.0%}", "engagement lever", NAVY),
-    ("Avg products", f"{df.NumOfProducts.mean():.2f}", f"{(df.NumOfProducts==1).mean():.0%} on a single product", NAVY),
+    ("Churn rate", f"{baseline:.1%}", "PRIMARY · target ≤ 15%", RED),
+    ("Retention rate", f"{1-baseline:.1%}", "target ≥ 85%", TEAL),
+    ("Deposits under mgmt", f"€{tb/1e6:.0f}M", "total deposit book", NAVY),
+    ("Deposits at risk", f"€{bar/1e6:.0f}M", f"{bar/tb:.0%} of all deposits", RED),
+    ("Revenue at risk", f"≈€{bar*NIM/1e6:.1f}M", "per yr · ~2.5% NIM (illustrative)", RED),
+    ("Active members", f"{df.IsActiveMember.mean():.0%}", "target ≥ 60%", NAVY),
+    ("Avg balance / cust.", f"€{df.Balance.mean()/1e3:.0f}K", "across all 10,000", NAVY),
+    ("High-balance churn", f"{hi.Exited.mean():.1%}", f"&gt;€100k · {len(hi):,} customers", RED),
 ]
 card_html = "".join(
     f'<div class="card"><div class="card-label">{l}</div>'
@@ -124,7 +128,7 @@ html = f"""<!DOCTYPE html><html><head><meta charset="utf-8">
  header{{background:linear-gradient(110deg,{NAVY},#2c5a8f);color:#fff;border-radius:14px;padding:22px 28px;box-shadow:0 4px 14px rgba(31,58,95,.25)}}
  header h1{{margin:0;font-size:26px;letter-spacing:.3px}}
  header p{{margin:6px 0 0;opacity:.9;font-size:14px}}
- .kpis{{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin:18px 0}}
+ .kpis{{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:18px 0}}
  .card{{background:#fff;border-radius:12px;padding:16px 18px;box-shadow:0 2px 8px rgba(0,0,0,.06);border-top:4px solid {NAVY}}}
  .card-label{{font-size:12px;text-transform:uppercase;letter-spacing:.6px;color:#7a869a;font-weight:600}}
  .card-value{{font-size:28px;font-weight:800;margin:6px 0 2px;line-height:1}}

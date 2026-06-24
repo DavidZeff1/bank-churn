@@ -75,19 +75,45 @@ def churn_by(col, order=None):
 
 # ====================================================== KPIs
 churned = df[df.Exited == 1]
+retained = df[df.Exited == 0]
+NIM = 0.025                       # illustrative net-interest-margin on deposits (revenue proxy)
+HI_THRESH = 100_000               # "high-balance" customer threshold
+hi = df[df.Balance > HI_THRESH]
 kpis = {
+    # ---- base counts ----
     "total_customers": int(N),
     "churned_customers": int(df.Exited.sum()),
+    "inactive_customers": int((df.IsActiveMember == 0).sum()),
+    # ---- success-metric rates ----
     "churn_rate": float(baseline),
     "retention_rate": float(1 - baseline),
-    "balance_at_risk": float(churned.Balance.sum()),
-    "total_balance": float(df.Balance.sum()),
-    "balance_at_risk_share": float(churned.Balance.sum()/df.Balance.sum()),
     "active_member_rate": float(df.IsActiveMember.mean()),
+    "cross_sell_rate": float((df.NumOfProducts >= 2).mean()),
+    "single_product_share": float((df.NumOfProducts == 1).mean()),
     "avg_products": float(df.NumOfProducts.mean()),
-    "single_product_share": float((df.NumOfProducts==1).mean()),
+    # ---- deposits & value ----
+    "total_balance": float(df.Balance.sum()),
+    "balance_at_risk": float(churned.Balance.sum()),
+    "balance_at_risk_share": float(churned.Balance.sum()/df.Balance.sum()),
+    "stable_deposits": float(retained.Balance.sum()),
+    "avg_balance_per_customer": float(df.Balance.mean()),
     "avg_balance_churned": float(churned.Balance.mean()),
-    "avg_balance_retained": float(df[df.Exited==0].Balance.mean()),
+    "avg_balance_retained": float(retained.Balance.mean()),
+    # ---- high-value churn ----
+    "high_balance_threshold": HI_THRESH,
+    "high_balance_customers": int(len(hi)),
+    "high_balance_churn_rate": float(hi.Exited.mean()),
+    # ---- revenue proxy (illustrative, NIM assumption) ----
+    "nim_assumption": NIM,
+    "revenue_proxy_annual": float(df.Balance.sum() * NIM),
+    "revenue_at_risk_annual": float(churned.Balance.sum() * NIM),
+}
+# success-metric targets (direction-aware for status colouring)
+targets = {
+    "churn_rate":        {"target": 0.15, "lower_is_better": True},
+    "retention_rate":    {"target": 0.85, "lower_is_better": False},
+    "active_member_rate":{"target": 0.60, "lower_is_better": False},
+    "cross_sell_rate":   {"target": 0.60, "lower_is_better": False},
 }
 
 print("="*64); print("HEADLINE KPIs"); print("="*64)
@@ -99,6 +125,15 @@ print(f"Balance at risk ........... €{kpis['balance_at_risk']:,.0f}  "
 print(f"Active-member rate ........ {kpis['active_member_rate']:.1%}")
 print(f"Avg products / customer ... {kpis['avg_products']:.2f}  "
       f"(single-product: {kpis['single_product_share']:.1%})")
+print("-"*64)
+print(f"Deposits under mgmt ....... €{kpis['total_balance']/1e6:,.0f}M")
+print(f"Avg balance / customer .... €{kpis['avg_balance_per_customer']:,.0f}")
+print(f"Stable deposits ........... €{kpis['stable_deposits']/1e6:,.0f}M")
+print(f"Cross-sell rate (2+ prod).. {kpis['cross_sell_rate']:.1%}")
+print(f"High-balance churn (>€100k) {kpis['high_balance_churn_rate']:.1%}  "
+      f"({kpis['high_balance_customers']:,} customers)")
+print(f"Revenue at risk (~{NIM:.1%} NIM) €{kpis['revenue_at_risk_annual']/1e6:.1f}M / yr "
+      f"of €{kpis['revenue_proxy_annual']/1e6:.1f}M total")
 
 # ====================================================== segment tables
 tables = {
@@ -202,7 +237,7 @@ ax.legend(); ax.set_title("Churners skew toward high balances (esp. the €120k+
 save(fig, "07_balance_dist.png")
 
 # ====================================================== persist
-out = {"kpis": kpis, "baseline": baseline,
+out = {"kpis": kpis, "targets": targets, "baseline": baseline,
        "tables": {k: v.assign(**{c: v[c] for c in v.columns}).to_dict(orient="list")
                   for k, v in tables.items()},
        "germany": {"churn": float(ger.Exited.mean()),

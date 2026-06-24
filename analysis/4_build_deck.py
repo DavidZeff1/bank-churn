@@ -203,24 +203,39 @@ footer(s, 3)
 
 # ===================================================================== 4 KPIs
 s = slide(); title_bar(s, "KPIs & Success Metrics", "What we measure")
-cards = [
-    (f"{K['churn_rate']:.1%}", "Churn rate", "PRIMARY · target ≤ 15%", RED, True),
-    (f"{1-K['churn_rate']:.1%}", "Retention rate", "keep > 85%", TEAL, False),
-    (f"€{K['balance_at_risk']/1e6:.0f}M", "Balance at risk", f"{K['balance_at_risk_share']:.0%} of deposits", RED, False),
-    (f"{K['active_member_rate']:.0%}", "Active-member rate", "engagement lever", NAVY, False),
-    (f"{K['avg_products']:.2f}", "Products / customer", f"{K['single_product_share']:.0%} single-product", NAVY, False),
-]
-cw, gap = 2.34, 0.18; x = 0.62
-for v, l, sub, c, prim in cards:
-    kpi_card(s, x, 1.65, cw, 1.6, v, l, sub, c, prim); x += cw + gap
-tf = txt(s, 0.62, 3.7, 12.1, 2.8)
-run(tf.paragraphs[0], "Thought process", 16, NAVY, bold=True)
-bullets(s, [
-    ("Churn rate is the north-star metric ", "— the single number that tells us whether we are winning or losing customers."),
-    ("Balance at risk", " translates churn into euros, so the business feels the impact (€186M ≈ a quarter of all deposits)."),
-    ("Active-member rate & products-per-customer", " are the levers we can actually pull — engagement and product fit drive retention."),
-    ("Success", " = move churn from 20% → ≤15% and lift retention above 85% over the next year."),
-], 0.62, 4.15, 12.1, 2.6, size=14.5, gap=9)
+cw, gap, x0 = 2.86, 0.22, 0.62
+def kpi_row(cards, top):
+    x = x0
+    for v, l, sub, c, prim in cards:
+        kpi_card(s, x, top, cw, 1.5, v, l, sub, c, prim); x += cw + gap
+
+tf = txt(s, x0, 1.34, 12, 0.3)
+run(tf.paragraphs[0], "SUCCESS METRICS — CURRENT vs TARGET", 12, TEAL, bold=True)
+kpi_row([
+    (f"{K['churn_rate']:.1%}", "Churn rate", "target ≤ 15%", RED, True),
+    (f"{K['retention_rate']:.1%}", "Retention rate", "target ≥ 85%", TEAL, False),
+    (f"{K['active_member_rate']:.0%}", "Active members", "target ≥ 60%", NAVY, False),
+    (f"{K['cross_sell_rate']:.0%}", "Cross-sell (2+ products)", "target ≥ 60%", NAVY, False),
+], 1.62)
+
+tf = txt(s, x0, 3.38, 12, 0.3)
+run(tf.paragraphs[0], "DEPOSITS, VALUE & REVENUE", 12, TEAL, bold=True)
+kpi_row([
+    (f"€{K['total_balance']/1e6:.0f}M", "Deposits under mgmt", "total deposit book", NAVY, False),
+    (f"€{K['avg_balance_per_customer']/1e3:.0f}K", "Avg balance / customer", "per customer", NAVY, False),
+    (f"€{K['balance_at_risk']/1e6:.0f}M", "Deposits at risk", f"{K['balance_at_risk_share']:.0%} of the book", RED, False),
+    (f"≈€{K['revenue_at_risk_annual']/1e6:.1f}M", "Revenue at risk / yr", "~2.5% NIM (illustrative)", RED, False),
+], 3.66)
+
+rrect(s, x0, 5.5, 12.1, 1.25, LIGHT)
+tf = txt(s, x0+0.28, 5.6, 11.5, 1.08, anchor=MSO_ANCHOR.MIDDLE)
+p = tf.paragraphs[0]
+run(p, "Why these:  ", 13.5, NAVY, bold=True)
+run(p, "churn is the north-star; balance- and revenue-at-risk put it in euros; engagement and cross-sell are the levers we can pull. "
+       "Success = churn ≤ 15% and retention ≥ 85% within a year.", 13.5, DARK)
+p2 = tf.add_paragraph(); p2.space_before = Pt(4)
+run(p2, "Revenue figures assume a 2.5% net-interest margin on deposits — illustrative, as the dataset has no revenue field.",
+    11, GREY, italic=True)
 footer(s, 4)
 
 # ===================================================================== 5 DATA PREP

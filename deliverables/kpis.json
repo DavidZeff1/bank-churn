@@ -2,16 +2,44 @@
   "kpis": {
     "total_customers": 10000,
     "churned_customers": 2037,
+    "inactive_customers": 4849,
     "churn_rate": 0.2037,
     "retention_rate": 0.7963,
-    "balance_at_risk": 185588094.63,
-    "total_balance": 764858892.88,
-    "balance_at_risk_share": 0.24264357302715864,
     "active_member_rate": 0.5151,
-    "avg_products": 1.5302,
+    "cross_sell_rate": 0.4916,
     "single_product_share": 0.5084,
+    "avg_products": 1.5302,
+    "total_balance": 764858892.88,
+    "balance_at_risk": 185588094.63,
+    "balance_at_risk_share": 0.24264357302715864,
+    "stable_deposits": 579270798.25,
+    "avg_balance_per_customer": 76485.889288,
     "avg_balance_churned": 91108.53933726068,
-    "avg_balance_retained": 72745.2967788522
+    "avg_balance_retained": 72745.2967788522,
+    "high_balance_threshold": 100000,
+    "high_balance_customers": 4799,
+    "high_balance_churn_rate": 0.25234423838299647,
+    "nim_assumption": 0.025,
+    "revenue_proxy_annual": 19121472.322,
+    "revenue_at_risk_annual": 4639702.36575
+  },
+  "targets": {
+    "churn_rate": {
+      "target": 0.15,
+      "lower_is_better": true
+    },
+    "retention_rate": {
+      "target": 0.85,
+      "lower_is_better": false
+    },
+    "active_member_rate": {
+      "target": 0.6,
+      "lower_is_better": false
+    },
+    "cross_sell_rate": {
+      "target": 0.6,
+      "lower_is_better": false
+    }
   },
   "baseline": 0.2037,
   "tables": {

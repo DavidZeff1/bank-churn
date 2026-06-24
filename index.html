@@ -11,6 +11,7 @@
   </div>
   <nav class="tabs">
     <a class="tab-link" data-tab="overview" href="#overview">Overview</a>
+    <a class="tab-link" data-tab="kpis" href="#kpis">KPIs</a>
     <a class="tab-link" data-tab="dashboard" href="#dashboard">Dashboard</a>
     <a class="tab-link" data-tab="presentation" href="#presentation">Presentation</a>
     <a class="tab-link" data-tab="report" href="#report">Report</a>
@@ -42,6 +43,27 @@
 
   <div class="section-head" style="margin-top:30px"><h2>Explore the deliverables</h2><p>Each tab showcases one part of the project.</p></div>
   <div class="grid cards-2"><div class="card launch" data-tab="dashboard"><div class="ic">📊</div><h3>Interactive Dashboard</h3><p>Six churn lenses + KPI cards on one page. Hover, zoom, explore.</p><div class="go">Open →</div></div><div class="card launch" data-tab="presentation"><div class="ic">🖥️</div><h3>Presentation</h3><p>13-slide, 12-minute deck — the full story, ready to present.</p><div class="go">Open →</div></div><div class="card launch" data-tab="report"><div class="ic">📄</div><h3>Full Report</h3><p>Process, findings and recommendations, with evidence.</p><div class="go">Open →</div></div><div class="card launch" data-tab="data"><div class="ic">🧹</div><h3>Data & Cleaning</h3><p>From a messy workbook to a validated, analysis-ready dataset.</p><div class="go">Open →</div></div></div>
+</section>
+<section id="tab-kpis" class="tab">
+  <div class="section-head"><span class="kicker">Project step 3.3 · what we measure</span>
+    <h2>KPIs &amp; Success Metrics</h2>
+    <p>Churn is the north-star metric; balance- and revenue-at-risk translate it into euros; engagement and product fit are the levers we can pull. Targets are set for the next year.</p></div>
+
+  <h3 class="kpi-group">Success metrics — current vs target</h3>
+  <div class="grid smetrics"><div class="card smetric "><div class="label">Churn rate</div><div class="sm-row"><div class="value">20.4%</div><div class="sm-tgt">target ▾ 15%</div></div><div class="bar"><i style="width:74%"></i></div><div class="status">5.4 pts above target</div></div><div class="card smetric "><div class="label">Retention rate</div><div class="sm-row"><div class="value">79.6%</div><div class="sm-tgt">target ▴ 85%</div></div><div class="bar"><i style="width:94%"></i></div><div class="status">5.4 pts below target</div></div><div class="card smetric "><div class="label">Active members</div><div class="sm-row"><div class="value">51.5%</div><div class="sm-tgt">target ▴ 60%</div></div><div class="bar"><i style="width:86%"></i></div><div class="status">8.5 pts below target</div></div><div class="card smetric "><div class="label">Cross-sell (2+ products)</div><div class="sm-row"><div class="value">49.2%</div><div class="sm-tgt">target ▴ 60%</div></div><div class="bar"><i style="width:82%"></i></div><div class="status">10.8 pts below target</div></div></div>
+
+  <h3 class="kpi-group">Deposits &amp; value</h3>
+  <div class="grid kpis4"><div class="card kpi "><div class="label">Deposits under management</div><div class="value">€765M</div><div class="sub">total deposit book</div></div><div class="card kpi "><div class="label">Avg balance / customer</div><div class="value">€76.5K</div><div class="sub">across all 10,000 customers</div></div><div class="card kpi teal"><div class="label">Stable deposits</div><div class="value">€579M</div><div class="sub">held by retained customers</div></div><div class="card kpi red"><div class="label">Deposits at risk</div><div class="value">€186M</div><div class="sub">24% of the book</div></div></div>
+
+  <h3 class="kpi-group">Revenue impact</h3>
+  <div class="revbanner">
+    <div class="big">≈ €4.6M / yr<small>revenue at risk from churn</small></div>
+    <div class="txt">Of an estimated <b>€19.1M</b> in annual net-interest income on deposits.
+      <b>Illustrative</b> — assumes a 2.5% net-interest margin on balances (the dataset has no revenue field) to size churn in euro terms.</div>
+  </div>
+
+  <h3 class="kpi-group">High-value churn — risk indicators</h3>
+  <div class="grid cards-3"><div class="card kpi red"><div class="label">High-balance churn</div><div class="value">25.2%</div><div class="sub">&gt;€100k balance · 4,799 customers</div></div><div class="card kpi "><div class="label">Single-product share</div><div class="value">50.8%</div><div class="sub">these customers churn at 27.7%</div></div><div class="card kpi red"><div class="label">Inactive customers</div><div class="value">4,849</div><div class="sub">churn 26.9% vs 14.3% active</div></div></div>
 </section>
 <section id="tab-dashboard" class="tab">
   <div class="section-head"><span class="kicker">BI tool · Plotly</span>
@@ -229,49 +251,82 @@
 <p><strong>Assumptions / filters:</strong> the data is a single snapshot (no time dimension), so KPIs are point-in-time, not trended. The full customer base is analysed — no sampling or row filtering.</p>
 <hr />
 <h2>5. KPIs &amp; success metrics</h2>
+<p><strong>Success metrics (monitored against a target):</strong></p>
 <table>
 <thead>
 <tr>
 <th>KPI</th>
-<th>Value</th>
-<th>Why it's tracked</th>
+<th>Current</th>
 <th>Target</th>
+<th>Why it's tracked</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><strong>Churn rate</strong> <em>(primary)</em></td>
 <td><strong>20.4%</strong></td>
-<td>North-star: are we keeping customers?</td>
 <td><strong>≤ 15%</strong></td>
+<td>North-star: are we keeping customers?</td>
 </tr>
 <tr>
 <td>Retention rate</td>
 <td>79.6%</td>
-<td>Inverse view, board-friendly</td>
 <td>≥ 85%</td>
-</tr>
-<tr>
-<td><strong>Balance at risk</strong></td>
-<td><strong>€186M</strong> (24% of deposits)</td>
-<td>Translates churn into € of impact</td>
-<td>↓</td>
+<td>Inverse view, board-friendly</td>
 </tr>
 <tr>
 <td>Active-member rate</td>
 <td>51.5%</td>
+<td>≥ 60%</td>
 <td>Engagement lever</td>
-<td>↑</td>
 </tr>
 <tr>
-<td>Products per customer</td>
-<td>1.53 (51% single-product)</td>
-<td>Product-fit / cross-sell lever</td>
-<td>↑ toward 2</td>
+<td>Cross-sell rate (2+ products)</td>
+<td>49.2%</td>
+<td>≥ 60%</td>
+<td>Product-fit lever</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Rationale:</strong> churn rate is the single headline metric; <em>balance at risk</em> makes the business feel it in euros; <em>activity</em> and <em>products-per-customer</em> are the levers management can actually pull.</p>
+<p><strong>Deposits &amp; value KPIs (the business in euros):</strong></p>
+<table>
+<thead>
+<tr>
+<th>KPI</th>
+<th>Value</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Deposits under management</td>
+<td>€765M</td>
+<td>total deposit book</td>
+</tr>
+<tr>
+<td>Avg balance / customer</td>
+<td>€76.5K</td>
+<td>across all 10,000</td>
+</tr>
+<tr>
+<td>Stable deposits</td>
+<td>€579M</td>
+<td>held by retained customers</td>
+</tr>
+<tr>
+<td><strong>Deposits at risk</strong></td>
+<td><strong>€186M</strong></td>
+<td><strong>24% of the book</strong> — held by churners</td>
+</tr>
+<tr>
+<td><strong>Revenue at risk</strong></td>
+<td><strong>≈ €4.6M / yr</strong></td>
+<td>of ~€19.1M est. net-interest income <em>(illustrative: 2.5% NIM on deposits; the data has no revenue field)</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Risk indicators:</strong> high-balance churn (&gt;€100k) <strong>25.2%</strong> · single-product share <strong>50.8%</strong> · inactive customers <strong>4,849</strong>.</p>
+<p><strong>Rationale:</strong> churn rate is the single headline metric; <em>balance-</em> and <em>revenue-at-risk</em> make the business feel it in euros; <em>activity</em> and <em>cross-sell</em> are the levers management can actually pull. Targets are set for the next year.</p>
 <hr />
 <h2>6. Deep-dive findings</h2>
 <h3>6.1 The product paradox <em>(strongest, most actionable driver)</em></h3>

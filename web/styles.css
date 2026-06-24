@@ -157,3 +157,30 @@ table.data tr:nth-child(even) td{background:#f7fafc}
 /* ---------- footer ---------- */
 footer{text-align:center;color:var(--muted);font-size:13px;padding:30px 20px 10px;border-top:1px solid var(--line);margin-top:10px}
 .note{background:#fff;border:1px dashed #c9d6e4;border-radius:12px;padding:14px 18px;color:var(--muted);font-size:13.5px;margin:18px 0}
+
+/* ---------- KPIs tab ---------- */
+.kpi-group{color:var(--navy);font-size:14px;text-transform:uppercase;letter-spacing:.7px;
+  font-weight:800;margin:26px 0 12px;padding-bottom:7px;border-bottom:2px solid var(--line)}
+.kpi-group:first-of-type{margin-top:8px}
+.kpis4{grid-template-columns:repeat(4,1fr)}
+.smetrics{grid-template-columns:repeat(4,1fr)}
+@media(max-width:900px){.kpis4,.smetrics{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.kpis4,.smetrics{grid-template-columns:1fr}}
+.smetric{border-top:4px solid var(--amber)}
+.smetric.ok{border-top-color:var(--teal)}
+.smetric .label{font-size:11.5px;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);font-weight:700}
+.smetric .sm-row{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin:7px 0 2px}
+.smetric .value{font-size:27px;font-weight:800;color:var(--navy);line-height:1}
+.smetric .sm-tgt{font-size:12.5px;color:var(--muted);font-weight:600;white-space:nowrap}
+.smetric .bar{height:8px;background:#eef2f7;border-radius:99px;overflow:hidden;margin:10px 0 8px}
+.smetric .bar i{display:block;height:100%;background:var(--amber);border-radius:99px}
+.smetric.ok .bar i{background:var(--teal)}
+.smetric .status{font-size:11.5px;font-weight:700;color:#b8791b}
+.smetric.ok .status{color:var(--teal)}
+.revbanner{margin:6px 0 4px;background:linear-gradient(110deg,var(--navy),var(--navy2));color:#fff;
+  border-radius:var(--radius);padding:20px 26px;box-shadow:var(--shadow);display:flex;
+  align-items:center;gap:26px;flex-wrap:wrap}
+.revbanner .big{font-size:30px;font-weight:800;color:#ff8a93;white-space:nowrap;line-height:1.1}
+.revbanner .big small{display:block;font-size:12px;color:#cfdae8;font-weight:600;margin-top:4px}
+.revbanner .txt{flex:1;min-width:240px;font-size:13.5px;color:#d7e0ec;line-height:1.5}
+.revbanner .txt b{color:#fff}

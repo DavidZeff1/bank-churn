@@ -17,7 +17,9 @@ import pandas as pd
 
 BASE = Path(__file__).resolve().parent.parent
 D = BASE / "deliverables"
-K = json.loads((D / "kpis.json").read_text())["kpis"]
+_KJSON = json.loads((D / "kpis.json").read_text())
+K = _KJSON["kpis"]
+T = _KJSON["targets"]
 md = lambda t: markdown.markdown(t, extensions=["tables", "fenced_code", "sane_lists"])
 
 # ---- dynamic values ----
@@ -100,6 +102,7 @@ HEAD = f"""<!doctype html><html lang="en"><head>
   </div>
   <nav class="tabs">
     <a class="tab-link" data-tab="overview" href="#overview">Overview</a>
+    <a class="tab-link" data-tab="kpis" href="#kpis">KPIs</a>
     <a class="tab-link" data-tab="dashboard" href="#dashboard">Dashboard</a>
     <a class="tab-link" data-tab="presentation" href="#presentation">Presentation</a>
     <a class="tab-link" data-tab="report" href="#report">Report</a>
@@ -133,6 +136,60 @@ OVERVIEW = f"""
 
   <div class="section-head" style="margin-top:30px"><h2>Explore the deliverables</h2><p>Each tab showcases one part of the project.</p></div>
   <div class="grid cards-2">{launch_cards}</div>
+</section>"""
+
+# ---- KPIs tab ----
+def smetric(key, label):
+    cur, t = K[key], T[key]["target"]; low = T[key]["lower_is_better"]
+    met = cur <= t if low else cur >= t
+    prog = max(0.04, min((t / cur) if low else (cur / t), 1.0))
+    gap = abs(cur - t) * 100
+    cls = "ok" if met else ""
+    arrow = "▾" if low else "▴"
+    status = "On target ✓" if met else f"{gap:.1f} pts {'above' if low else 'below'} target"
+    return (f'<div class="card smetric {cls}"><div class="label">{label}</div>'
+            f'<div class="sm-row"><div class="value">{cur:.1%}</div>'
+            f'<div class="sm-tgt">target {arrow} {t:.0%}</div></div>'
+            f'<div class="bar"><i style="width:{prog*100:.0f}%"></i></div>'
+            f'<div class="status">{status}</div></div>')
+
+def vcard(value, label, sub, cls=""):
+    return (f'<div class="card kpi {cls}"><div class="label">{label}</div>'
+            f'<div class="value">{value}</div><div class="sub">{sub}</div></div>')
+
+smetric_cards = (smetric("churn_rate", "Churn rate") + smetric("retention_rate", "Retention rate")
+                 + smetric("active_member_rate", "Active members") + smetric("cross_sell_rate", "Cross-sell (2+ products)"))
+value_cards = (
+    vcard(f"€{K['total_balance']/1e6:.0f}M", "Deposits under management", "total deposit book")
+    + vcard(f"€{K['avg_balance_per_customer']/1e3:.1f}K", "Avg balance / customer", "across all 10,000 customers")
+    + vcard(f"€{K['stable_deposits']/1e6:.0f}M", "Stable deposits", "held by retained customers", "teal")
+    + vcard(f"€{K['balance_at_risk']/1e6:.0f}M", "Deposits at risk", f"{K['balance_at_risk_share']:.0%} of the book", "red"))
+hv_cards = (
+    vcard(f"{K['high_balance_churn_rate']:.1%}", "High-balance churn", f"&gt;€100k balance · {K['high_balance_customers']:,} customers", "red")
+    + vcard(f"{K['single_product_share']:.1%}", "Single-product share", "these customers churn at 27.7%")
+    + vcard(f"{K['inactive_customers']:,}", "Inactive customers", "churn 26.9% vs 14.3% active", "red"))
+
+KPIS = f"""
+<section id="tab-kpis" class="tab">
+  <div class="section-head"><span class="kicker">Project step 3.3 · what we measure</span>
+    <h2>KPIs &amp; Success Metrics</h2>
+    <p>Churn is the north-star metric; balance- and revenue-at-risk translate it into euros; engagement and product fit are the levers we can pull. Targets are set for the next year.</p></div>
+
+  <h3 class="kpi-group">Success metrics — current vs target</h3>
+  <div class="grid smetrics">{smetric_cards}</div>
+
+  <h3 class="kpi-group">Deposits &amp; value</h3>
+  <div class="grid kpis4">{value_cards}</div>
+
+  <h3 class="kpi-group">Revenue impact</h3>
+  <div class="revbanner">
+    <div class="big">≈ €{K['revenue_at_risk_annual']/1e6:.1f}M / yr<small>revenue at risk from churn</small></div>
+    <div class="txt">Of an estimated <b>€{K['revenue_proxy_annual']/1e6:.1f}M</b> in annual net-interest income on deposits.
+      <b>Illustrative</b> — assumes a {K['nim_assumption']:.1%} net-interest margin on balances (the dataset has no revenue field) to size churn in euro terms.</div>
+  </div>
+
+  <h3 class="kpi-group">High-value churn — risk indicators</h3>
+  <div class="grid cards-3">{hv_cards}</div>
 </section>"""
 
 DASHBOARD = """
@@ -191,6 +248,6 @@ DATA = f"""
 FOOT = """<footer>Bank Customer Churn · Data Analyst Program, Hebrew University of Jerusalem ·
   built with Python, Plotly &amp; python-pptx</footer></main><script src="web/app.js"></script></body></html>"""
 
-html = HEAD + OVERVIEW + DASHBOARD + PRESENTATION + REPORT_OPEN + report_html + REPORT_CLOSE + DATA + FOOT
+html = HEAD + OVERVIEW + KPIS + DASHBOARD + PRESENTATION + REPORT_OPEN + report_html + REPORT_CLOSE + DATA + FOOT
 (BASE / "index.html").write_text(html)
 print(f"index.html written ({len(html)/1024:.0f} KB) · {n_slides} slides · references deliverables/ in place")

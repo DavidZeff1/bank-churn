@@ -78,15 +78,28 @@ The raw workbook was intentionally messy. Every fix below is reproducible in `an
 
 ## 5. KPIs & success metrics
 
-| KPI | Value | Why it's tracked | Target |
-|---|---|---|---|
-| **Churn rate** *(primary)* | **20.4%** | North-star: are we keeping customers? | **≤ 15%** |
-| Retention rate | 79.6% | Inverse view, board-friendly | ≥ 85% |
-| **Balance at risk** | **€186M** (24% of deposits) | Translates churn into € of impact | ↓ |
-| Active-member rate | 51.5% | Engagement lever | ↑ |
-| Products per customer | 1.53 (51% single-product) | Product-fit / cross-sell lever | ↑ toward 2 |
+**Success metrics (monitored against a target):**
 
-**Rationale:** churn rate is the single headline metric; *balance at risk* makes the business feel it in euros; *activity* and *products-per-customer* are the levers management can actually pull.
+| KPI | Current | Target | Why it's tracked |
+|---|---|---|---|
+| **Churn rate** *(primary)* | **20.4%** | **≤ 15%** | North-star: are we keeping customers? |
+| Retention rate | 79.6% | ≥ 85% | Inverse view, board-friendly |
+| Active-member rate | 51.5% | ≥ 60% | Engagement lever |
+| Cross-sell rate (2+ products) | 49.2% | ≥ 60% | Product-fit lever |
+
+**Deposits & value KPIs (the business in euros):**
+
+| KPI | Value | Note |
+|---|---|---|
+| Deposits under management | €765M | total deposit book |
+| Avg balance / customer | €76.5K | across all 10,000 |
+| Stable deposits | €579M | held by retained customers |
+| **Deposits at risk** | **€186M** | **24% of the book** — held by churners |
+| **Revenue at risk** | **≈ €4.6M / yr** | of ~€19.1M est. net-interest income *(illustrative: 2.5% NIM on deposits; the data has no revenue field)* |
+
+**Risk indicators:** high-balance churn (>€100k) **25.2%** · single-product share **50.8%** · inactive customers **4,849**.
+
+**Rationale:** churn rate is the single headline metric; *balance-* and *revenue-at-risk* make the business feel it in euros; *activity* and *cross-sell* are the levers management can actually pull. Targets are set for the next year.
 
 ---
 
